@@ -52,6 +52,7 @@
                     class="my-carousel-item active"
                     carousel-item="1"
                     v-for="(curElem, index) in images"
+                    v-show="index === activeIndex"
                   >
                     <img
                       class="img-fluid"
@@ -70,22 +71,19 @@
                 <div class="my-thumbnails position-relative">
                   <!-- prev -->
                   <div class="my-previous position-absolute">
-                    <span class="my-prev-hook"></span>
+                    <span class="my-prev-hook" @click="showPrev"></span>
                   </div>
                   <!-- next -->
                   <div class="my-next position-absolute">
-                    <span class="my-next-hook"></span>
+                    <span class="my-next-hook" @click="showNext"></span>
                   </div>
                   <!-- immagini interne -->
                   <img
-                    class="img-fluid my-thumbnail active"
-                    src="./img/01.webp"
-                    alt="Thumbnail of Marvel's Spiderman Miles Morale picture"
-                  />
-                  <img
+                    v-for="(curElem, index) in images"
                     class="img-fluid my-thumbnail"
-                    src="./img/02.webp"
-                    alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
+                    :class="{'active': index === activeIndex }"
+                    :src="images[index].image"
+                    alt="Thumbnail of {{images[index].title}}"
                   />
                   <!-- etc ... -->
                 </div>

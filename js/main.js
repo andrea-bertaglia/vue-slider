@@ -3,6 +3,8 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      activeIndex: 0,
+      isActive: false,
       images: [
         {
           image: "img/01.webp",
@@ -32,5 +34,29 @@ createApp({
       ],
     };
   },
-  method: {},
+  methods: {
+    showNext: function () {
+      if (this.activeIndex < this.images.length - 1) {
+        this.activeIndex++;
+        console.log(this.activeIndex);
+        this.changeClass();
+      } else {
+        this.activeIndex = 0;
+        console.log(this.activeIndex);
+      }
+    },
+    showPrev: function () {
+      if (this.activeIndex !== 0) {
+        this.activeIndex--;
+        console.log(this.activeIndex);
+        this.changeClass();
+      } else {
+        this.activeIndex = this.images.length - 1;
+        console.log(this.activeIndex);
+      }
+    },
+    changeClass: function () {
+      this.isActive = !this.isActive;
+    },
+  },
 }).mount("#app");
