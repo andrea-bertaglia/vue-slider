@@ -5,6 +5,7 @@ createApp({
     return {
       activeIndex: 0,
       isActive: false,
+      clock: false,
       images: [
         {
           image: "img/01.webp",
@@ -57,6 +58,16 @@ createApp({
     },
     changeClass: function () {
       this.isActive = !this.isActive;
+    },
+    playCarousel: function () {
+      if (!this.clock) {
+        this.clock = setInterval(this.showNext, 3000);
+        console.log("start carousel");
+      } else {
+        clearInterval(this.clock);
+        this.clock = false;
+        console.log("stop carousel");
+      }
     },
   },
 }).mount("#app");
